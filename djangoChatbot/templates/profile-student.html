@@ -1,0 +1,347 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'external.css' %}">
+    <link rel = "icon" href = "{% static 'base_logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+    
+    
+<!--internal css-->
+<style>
+    body{
+        background-color: #e8f5ff;
+    }
+    .header-img {
+        width: 100px;
+        height : 100px;
+        float:left;
+        margin-top: 30px;
+    }
+    .open
+    {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     pointer-events: none;
+     z-index: 10000;
+    }
+    .open .layer
+    {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     transform-origin: top;
+     animation: open 1s ease-in-out forwards;
+    }
+    .open .layer:nth-child(1)
+    {
+     
+     z-index: 1;
+    }
+    .open .layer:nth-child(2)
+    {
+     
+     animation-delay: 0.1s;
+     z-index: 1;
+    }
+    @keyframes open
+    {
+     0%
+     {
+      transform: scaleY(1);
+     }
+     100%
+     {
+      transform: scaleY(0);
+     }
+    }
+    section
+    {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background: #fff;
+     display: grid;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+    }
+    .sci
+    {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    }
+    .sci li
+    {
+    opacity: 0;
+    list-style: none;
+    float:right;
+    right:30px;
+    padding: 10px 0;
+    padding-left: 300px;
+    text-align: center;
+    animation: fadeInBottom 0s linear forwards;
+    }
+    header ul li:nth-child(1),
+    .sci li:nth-child(1)
+    {
+    animation-delay: 0.50s;
+    }
+    header ul li:nth-child(2),
+    .sci li:nth-child(2)
+    {
+    animation-delay: 1.00s;
+    }
+    header ul li:nth-child(3),
+    .sci li:nth-child(3)
+    {
+    animation-delay: 1.05s;
+    }
+    header ul li:nth-child(4),
+    .sci li:nth-child(4)
+    {
+    animation-delay: 1.10s;
+    }
+    header ul li:nth-child(5),
+    .sci li:nth-child(5)
+    {
+    animation-delay: 1.15s;
+    }
+    header ul li:nth-child(6),
+    .sci li:nth-child(6)
+    {
+    animation-delay: 1.20s;
+    }
+
+    .sci li a
+    {
+    font-size: 1.2em;
+    color: #000;
+    }
+    header
+    {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    }
+    header .logo
+    {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    text-transform: uppercase;
+    animation: fadeIn 0.5s linear forwards;
+    animation-delay: 5s;
+    }
+    header ul
+    {
+    margin: 0;
+    padding: 0;
+    float: right;
+    z-index: 100;
+    display: flex;
+    }
+    header ul li
+    {
+    opacity: 0;
+    list-style: none;
+    float:left;
+    margin: 0 10px;
+    animation: fadeInRight 0.5s linear forwards;
+    }
+    header ul li:last-child
+    {
+    margin-right: 0;
+    }
+    header ul li a
+    {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #000;
+    padding: 5px 10px;
+    letter-spacing: 2px;
+    }
+    header ul li a.active,
+    header ul li a:hover
+    {
+    background: #000;
+    color: #fff;
+    }
+    
+    /* Main */
+    .main {
+        margin-top: 10%;
+        margin-left: 25%;
+        font-size: 28px;
+        padding: 0 10px;
+        width: 58%;
+    }
+
+    .main h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .main .card {
+        background-color: #fff;
+        border-radius: 18px;
+        box-shadow: 1px 1px 8px 0 grey;
+        height: auto;
+        margin-bottom: 20px;
+        padding: 20px 0 20px 50px;
+    }
+
+    .main .card table {
+        border: none;
+        font-size: 16px;
+        height: 270px;
+        width: 80%;
+    }
+    footer{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center; 
+    }
+</style>
+</head>
+<!--internal css-->
+
+<body>
+    <header>
+        <div class="open">
+         <div class="layer"></div>
+         <div class="layer"></div>
+        </div>
+         
+          <img class = "header-img" src = "{% static 'base_logo.png' %}" alt="logo">
+          <ul>
+          
+           <li>
+            <a href="{% url 'student_dashboard' %}">Home</a>
+           </li>
+           <li>
+            <a href="#">Virtual Assistant</a>
+           </li>
+           <li>
+            <a href="#">Talk with Instructor</a>
+           </li>
+           <li>
+            <a href="#">Wallet Refill</a>
+           </li>
+           <li>
+            <a href="#" >0 MindCoins</a>
+           </li>
+           <li>
+            <a href = "{% url 'profile_student' %}">"><i class="fa-solid fa-user-graduate" style="font-size: 24px;"></i></a>
+           </li>
+          </ul>
+    </header> 
+    <div class="main">
+        <h2>MY PROFILE</h2>
+        <div class="card">
+            <div class="card-body">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>First Name</td>
+                            <td>:</td>
+                            <td>{{firstname}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>:</td>
+                            <td>{{lastname}}</td>
+                        </tr>
+                        <tr>
+                            <td>Middle Name</td>
+                            <td>:</td>
+                            <td>{{middlename}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td>{{email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Current study</td>
+                            <td>:</td>
+                            <td>{{study}}</td>
+                        </tr>
+                        <tr>
+                            <td>Year of Passing</td>
+                            <td>:</td>
+                            <td>{{YOP}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number</td>
+                            <td>:</td>
+                            <td>{{number}}</td>
+                        </tr>
+                        <tr>
+                            <td>CGPA (optional)</td>
+                            <td>:</td>
+                            <td>{{CGPA}}</td>
+                        </tr>
+                        <tr>
+                            <td>College Name</td>
+                            <td>:</td>
+                            <td>{{College}}</td>
+                        </tr>
+                        <tr>
+                            <td>Current City</td>
+                            <td>:</td>
+                            <td>{{City}}</td>
+                        </tr>
+                        <tr>
+                            <td>Current state</td>
+                            <td>:</td>
+                            <td>{{State}}</td>
+                        </tr>
+                        <tr>
+                            <td>Branch of study</td>
+                            <td>:</td>
+                            <td>{{branch}}</td>
+                        </tr>
+                        <tr>
+                            <td>Area of Interest</td>
+                            <td>:</td>
+                            <td>{{Interest}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+      <h3>Contact Us</h3>
+      <p>Email: mindrisers@gmail.com</p>
+    </footer>
+</body>
+</html>

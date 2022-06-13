@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel = "icon" href = "logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <script src="components/footer.js" type="text/javascript" defer></script>
+</head>
+<body>
+    <header-component></header-component>
+    <div class="wrapper">
+        <div class="title">
+            <p>Sign up to MindRisers</p>
+        </div>
+        <div class="form">
+            <div class="input_field">
+                <label for="role">Who are you ?</label>
+                <select onchange="location = this.value;" id="role" name="role" style="width:100%">
+                  <option selected disabled hidden style='display: none' value=''></option>
+                  <option value="register-teacher.html">Teacher</option>
+                  <option value="register-student.html">Student</option>
+                </select>
+            </div>
+           
+        </div>
+        <div class="create_act">
+            <p>Already having an Account? <a href="login.html">Log In.</a></p>
+        </div>
+    <footer-component></footer-component>
+</body>
+</html>

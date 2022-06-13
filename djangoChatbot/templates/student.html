@@ -1,0 +1,678 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'external.css' %}">
+    <link rel = "icon" href = "{% static 'base_logo.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    
+<!--internal css-->
+<style>
+    .header-img {
+        width: 100px;
+        height : 100px;
+        float:left;
+        margin-top: 30px;
+    }
+    .open
+    {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     pointer-events: none;
+     z-index: 10000;
+    }
+    .open .layer
+    {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     transform-origin: top;
+     animation: open 1s ease-in-out forwards;
+    }
+    .open .layer:nth-child(1)
+    {
+     
+     z-index: 1;
+    }
+    .open .layer:nth-child(2)
+    {
+     
+     animation-delay: 0.1s;
+     z-index: 1;
+    }
+    @keyframes open
+    {
+     0%
+     {
+      transform: scaleY(1);
+     }
+     100%
+     {
+      transform: scaleY(0);
+     }
+    }
+    section
+    {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background: #fff;
+     display: grid;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+    }
+    .sci
+{
+position: absolute;
+bottom: 15px;
+right: 30px;
+display: flex;
+flex-direction: column;
+}
+.sci li
+{
+opacity: 0;
+list-style: none;
+float:right;
+right:30px;
+padding: 10px 0;
+padding-left: 300px;
+text-align: center;
+animation: fadeInBottom 0s linear forwards;
+}
+header ul li:nth-child(1),
+.sci li:nth-child(1)
+{
+animation-delay: 0.50s;
+}
+header ul li:nth-child(2),
+.sci li:nth-child(2)
+{
+animation-delay: 1.00s;
+}
+header ul li:nth-child(3),
+.sci li:nth-child(3)
+{
+animation-delay: 1.05s;
+}
+header ul li:nth-child(4),
+.sci li:nth-child(4)
+{
+animation-delay: 1.10s;
+}
+header ul li:nth-child(5),
+.sci li:nth-child(5)
+{
+animation-delay: 1.15s;
+}
+header ul li:nth-child(6),
+.sci li:nth-child(6)
+{
+animation-delay: 1.20s;
+}
+
+.sci li a
+{
+font-size: 1.2em;
+color: #000;
+}
+header
+{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 80px;
+padding: 0 10%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+}
+header .logo
+{
+opacity: 0;
+margin: 0;
+padding: 0;
+font-size: 2em;
+text-transform: uppercase;
+animation: fadeIn 0.5s linear forwards;
+animation-delay: 5s;
+}
+header ul
+{
+margin: 0;
+padding: 0;
+float: right;
+z-index: 100;
+display: flex;
+}
+header ul li
+{
+opacity: 0;
+list-style: none;
+float:left;
+margin: 0 10px;
+animation: fadeInRight 0.5s linear forwards;
+}
+header ul li:last-child
+{
+margin-right: 0;
+}
+header ul li a
+{
+text-decoration: none;
+font-size: 1.2em;
+color: #000;
+padding: 5px 10px;
+letter-spacing: 2px;
+}
+header ul li a.active,
+header ul li a:hover
+{
+background: #000;
+color: #fff;
+}
+body{
+    overflow-y: scroll;
+}
+
+* {box-sizing: border-box}
+body {font-family: 'PT Sans Narrow', sans-serif; margin:0}
+.mySlides {display: block; margin-left: auto; margin-right: auto;}
+img {vertical-align:-200px;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1500px;
+  height: fit-content;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.1); /* Black background with 0.5 opacity */
+  color: black;
+  font-weight: bolder;
+  width: 100%;
+  padding: 274px;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+*{
+    box-sizing: border-box;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 8px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 8px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  border: 8px;
+}
+
+.column :hover{
+    transform: translate3d(0, -1px, 0) scale(1.03);
+    transition: 0.6s;
+    background-color: grey;
+}
+
+.parentContainer {
+  text-align: center;
+}
+
+.button1 {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.button1:hover {
+  background-color: grey;
+  color: black;
+}
+
+.button1 {
+  border-radius: 60px;
+}
+.button2{
+  position: relative;
+}
+.wrapper{
+  text-align: center;
+}
+.mycard{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.mycard1{
+  height:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;}
+  
+.section1{
+  position: relative;  
+  height: 470px;
+  width: 1075px;
+  display: flex;
+  align-items: center;
+}
+
+.swiper{
+  width: 950px;
+}
+
+.card1{
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card1::before{
+  content: "";
+  position: absolute;
+  height: 40%;
+  width: 100%;
+  background: #333333;
+  border-radius: 20px 20px 0 0;
+}
+
+.card1 .card1-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  z-index: 100;
+}
+
+.section1 .card1 .image{
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #333333;
+}
+
+.section1 .card1 .image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+
+.card1 .media-icons{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card1 .media-icons i{
+  color: #fff;
+  opacity: 0.6;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card1 .media-icons i:hover{
+  opacity: 1;
+}
+
+.card1 .name-profession{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+  color: black;
+} 
+
+.name-profession .name{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.name-profession .profession{
+  font-size:15px;
+  font-weight: 500;
+}
+
+.card1 .rating{
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.card1 .rating i{
+  font-size: 18px;
+  margin: 0 2px;
+  color: #F4D03F;
+}
+
+.card1 .button{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.card1 .button button{
+  background: #333333;
+  outline: none;
+  border: none;
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button button:hover{
+  background: #333333;
+}
+
+.swiper-pagination{
+  position: absolute;
+}
+
+.swiper-pagination-bullet{
+  height: 7px;
+  width: 26px;
+  border-radius: 25px;
+  background: #333333;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  opacity: 0.7;
+  color: #333333;
+  transition: all 0.3s ease;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover{
+  opacity: 1;
+  color: #333333;
+}
+
+footer{
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center; 
+}
+
+</style>
+</head>
+<!--internal css-->
+
+<body>
+    <header>
+        <div class="open">
+         <div class="layer"></div>
+         <div class="layer"></div>
+        </div>
+         
+          <img class = "header-img" src = "{% static 'base_logo.png' %}" alt="logo">
+          <ul>
+          
+           <li>
+            <a href="{% url 'student_dashboard' %}">Home</a>
+           </li>
+           <li>
+            <a href="{% url 'chatbot' %}">Virtual Assistant</a>
+           </li>
+           <li>
+            <a href="{% url 'chatapplication' %}">Talk with Instructor</a>
+           </li>
+           <li>
+            <a href="{% url 'homepage' %}">Wallet Refill</a>
+           </li>
+           <li>
+            <a href="#" >100 MindCoins</a>
+           </li>
+           <li>
+            <a href = "{% url 'profile_student' %}"><i class="fa-solid fa-user-graduate" style="font-size: 24px;"></i></a>
+           </li>
+          </ul>
+    </header> 
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <img src="/img/carousel-1.png" style="width: 100%; margin-top: 110px; height:550px;" >
+          <div class="text"></div>
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="/img/carousel-2.jpg" style="width:100%; margin-top: 110px;height:550px;">
+          <div class="text"></div>
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="/img/carousel-3.jpg" style="width:100%; margin-top: 110px;height:550px;">
+          <div class="text"></div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+          <span class="dot" onclick="currentSlide(3)"></span> 
+        </div>
+        <br>
+        
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        }
+    </script>
+    
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <i class="fa-solid fa-person-chalkboard fa-4x"></i>
+            <p style="font-size:20px;">Skilled Instructors</p>
+            <p></p>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <i class="fa-solid fa-laptop fa-4x"></i>
+            <p style="font-size:20px;">Online Classes</p>
+            <p></p>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <i class="fa-solid fa-chalkboard-user fa-4x"></i>
+            <p style="font-size:20px;">Talk with Instructor</p>
+            <p></p>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <i class="fa-regular fa-comments fa-4x"></i>
+            <p style="font-size:20px;">Virtual Assistant</p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="parentContainer">
+        <div class="wrapper">
+          <a href="{% url 'book_tutor' %}"><button class="button1 button1 button2">CLICK HERE TO BOOK ONLINE CLASS</button></a>
+        </div>
+        <button class="button1 button1">INSTRUCTORS</button>
+        <h2>Expert Instructors</h2>
+      </div>
+    </div>
+    <!-- Swiper JS -->
+    {% for r in res %}
+    <div class="card">
+      <h1>{{r.firstname}}</h1>
+      <p class="title">{{r.qual}}</p>
+      <p>{{r.Specialization}}</p>
+      <p><a href="{% url 'list_of_teachers' email=r.email %}"><button>About me</button></a></p>
+    </div>
+    {% endfor %}
+    <!-- Initialize Swiper -->
+    <footer>
+      <h3>Contact Us</h3>
+      <p>Email: mindrisers@gmail.com</p>
+  </footer>
+</body>
+</html>

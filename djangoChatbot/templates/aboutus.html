@@ -1,0 +1,219 @@
+{% load static %}
+<!doctype html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>About Us</title>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'external.css' %}">
+  <link rel = "icon" href = "{% static 'base_logo.png' %}">
+  <style>
+    .header-img {
+        width: 100px;
+        height : 100px;
+        float:left;
+        margin-top: 30px;
+    }
+    .open
+    {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     pointer-events: none;
+     z-index: 10000;
+    }
+    .open .layer
+    {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     transform-origin: top;
+     animation: open 1s ease-in-out forwards;
+    }
+    .open .layer:nth-child(1)
+    {
+     
+     z-index: 1;
+    }
+    .open .layer:nth-child(2)
+    {
+     
+     animation-delay: 0.1s;
+     z-index: 1;
+    }
+    @keyframes open
+    {
+     0%
+     {
+      transform: scaleY(1);
+     }
+     100%
+     {
+      transform: scaleY(0);
+     }
+    }
+    section
+    {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background: #fff;
+     display: grid;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+    }
+    .sci
+{
+position: absolute;
+bottom: 15px;
+right: 30px;
+display: flex;
+flex-direction: column;
+}
+.sci li
+{
+opacity: 0;
+list-style: none;
+float:right;
+right:30px;
+padding: 10px 0;
+padding-left: 300px;
+text-align: center;
+animation: fadeInBottom 0s linear forwards;
+}
+header ul li:nth-child(1),
+.sci li:nth-child(1)
+{
+animation-delay: 1.00s;
+}
+header ul li:nth-child(2),
+.sci li:nth-child(2)
+{
+animation-delay: 1.05s;
+}
+header ul li:nth-child(3),
+.sci li:nth-child(3)
+{
+animation-delay: 1.10s;
+}
+header ul li:nth-child(4),
+.sci li:nth-child(4)
+{
+animation-delay: 1.15s;
+}
+
+.sci li a
+{
+font-size: 1.2em;
+color: #000;
+}
+header
+{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 80px;
+padding: 0 10%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+}
+header .logo
+{
+opacity: 0;
+margin: 0;
+padding: 0;
+font-size: 2em;
+text-transform: uppercase;
+animation: fadeIn 0.5s linear forwards;
+animation-delay: 5s;
+}
+header ul
+{
+margin: 0;
+padding: 0;
+float: right;
+z-index: 100;
+display: flex;
+}
+header ul li
+{
+opacity: 0;
+list-style: none;
+float:left;
+margin: 0 10px;
+animation: fadeInRight 0.5s linear forwards;
+}
+header ul li:last-child
+{
+margin-right: 0;
+}
+header ul li a
+{
+text-decoration: none;
+font-size: 1.2em;
+color: #000;
+padding: 5px 10px;
+letter-spacing: 2px;
+}
+header ul li a.active,
+header ul li a:hover
+{
+background: #000;
+color: #fff;
+}
+footer{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            text-align: center; 
+        }
+</style>
+ </head>
+ <body>
+  <header>
+    <div class="open">
+     <div class="layer"></div>
+     <div class="layer"></div>
+    </div>
+     
+      <img class = "header-img" src = "{% static 'base_logo.png' %}" alt="logo">
+      <ul>
+       <li>
+        <a href="{% url 'baseHome' %}">Home</a>
+       </li>
+       <li>
+        <a href="{% url 'aboutus' %}">About Us</a>
+       </li>
+       <li>
+        <a href="{% url 'register' %}">Register</a>
+       </li>
+       <li>
+        <a href="{% url 'login' %}">Login</a>
+       </li>
+      </ul>
+    </header>
+    <main>
+      <div class="bannerText">
+        <h2>About MindRisers</h2><br>
+    
+          <p>MindRisers Application aims to help students to get a personalised educational assistance. It also helps students in getting instant replies to all their queries throughout the day with the help of the voice-enabled chatbot. The application aims to achieve universal quality education and to improve learning outcomes, by brings together the teachers and students all over India. Students can get connected with a tutor all around India with our application. Students will be able to create a daily schedule which will be private and confidential. The students can also share their daily schedule with their tutors, so that the tutors can guide the students in preparing their daily educational plans. MindRisers Chat Application allows students to clarify their doubts with the teachers. The overall student performance is evaluated and badges are given accordingly. Sentiment analysis is performed on the feedback given by the students, and teachers are given scores accordingly.</p>
+      </div>
+      
+   </main>
+   <footer>
+    <h3>Contact Us</h3>
+    <p>Email: mindrisers@gmail.com</p>
+</footer>
+ </body>
+</html>

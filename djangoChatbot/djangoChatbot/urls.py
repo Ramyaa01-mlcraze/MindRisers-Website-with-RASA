@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from basewebsite import views as bw
+from chatapplication import views as chat
+from paymentGateway import views as pay
+from dashboard import views as dh
+from my_app import views as my
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('my_app/',include('my_app.urls'))
+    path('',include('my_app.urls')),
+    path('',include('basewebsite.urls')),
+    path('test_file',bw.baseHome),
+    path('',include('dashboard.urls')),
+    path('',include('paymentGateway.urls')),
+    path('',include('chatapplication.urls'))
 ]

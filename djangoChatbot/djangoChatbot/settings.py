@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-m%s1qz0$9gmp3(3sn5#*0(ow^ju8n-+cf1rnnk81w+a=9j$m^8'
+RAZOR_KEY_ID = 'rzp_test_JG71LdcfCx9gn4'
+RAZOR_KEY_SECRET = 'R766ZumIMZd049tH1DAlDbDa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'my_app',
+    'basewebsite',
+    'chatapplication',
+    'paymentGateway',
+    'dashboard',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -71,15 +79,24 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'djangoChatbot.wsgi.application'
+ASGI_APPLICATION = 'djangoChatbot.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        }
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'MindRisers-website',
     }
 }
 
@@ -121,6 +138,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
+STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
