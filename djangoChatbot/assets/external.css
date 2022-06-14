@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&amp;display=swap');
+body
+{
+ margin: 0;
+ padding: 0;
+ min-height: 100vh;
+ font-family: 'PT Sans Narrow', sans-serif;
+ overflow:hidden;
+}
+
+.bannerText
+{
+ position: absolute;
+ top: 60%;
+ left: 10%;
+ transform: translateY(-50%);
+ max-width: 700px;
+ margin-top: -50px;
+}
+.bannerText h2,
+.bannerText h3
+{
+ position: relative;
+ margin: 0;
+ padding: 0;
+ display: inline-block;
+ transform-origin: left;
+ text-transform: none;
+ transform: scaleX(0);
+ animation: revealTextReverse 1s ease-in-out forwards;
+}
+.bannerText h2
+{
+ font-size: 6em;
+ animation-delay: 2s;
+ margin-top: -90px;
+}
+.bannerText h3
+{
+ font-size: 3em;
+ animation-delay: 3s;
+}
+
+.bannerText h2:before,
+.bannerText h3:before
+{
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ background: #000;
+ width: 100%;
+ height: 100%;
+ transform-origin: right;
+ animation: revealText 1s ease-in-out forwards;
+ animation-delay: 3s;
+}
+.bannerText h3:before
+{
+ animation-delay: 4s;
+}
+@keyframes revealText
+{
+ 0%
+ {
+  transform: scaleX(1);
+ }
+ 100%
+ {
+  transform: scaleX(0);
+ }
+}
+@keyframes revealTextReverse
+{
+ 0%
+ {
+  transform: scaleX(0);
+ }
+ 100%
+ {
+  transform: scaleX(1);
+ }
+}
+.bannerText p
+{
+ opacity: 0;
+ font-weight: 400;
+ font-size: 1.2em;
+ animation: fadeIn 1s linear forwards;
+ animation-delay: 3s;
+ text-align: justify;
+}
+@keyframes fadeIn
+{
+ 0%
+ {
+  opacity: 0;
+ }
+ 100%
+ {
+  opacity: 1;
+ }
+}
+.bannerText a
+{
+ opacity: 0;
+ display: inline-block;
+ margin: 20px 0 0;
+ padding: 10px 20px;
+ background: #000;
+ color: #fff;
+ font-weight: 700;
+ text-decoration: none;
+ font-size: 1.2em;
+ letter-spacing: 1px;
+ animation: fadeInBottom 0.5s linear forwards;
+ animation-delay: 4.5s;
+}
+@keyframes fadeInBottom
+{
+ 0%
+ {
+  transform: translateY(50px);
+  opacity: 0;
+ }
+ 100%
+ {
+  transform: translateY(0);
+  opacity: 1;
+ }
+}
+
+
+@keyframes fadeInRight
+{
+ 0%
+ {
+  transform: translateX(150px);
+  opacity: 0;
+ }
+ 100%
+ {
+  transform: translateX(0);
+  opacity: 1;
+ }
+}
+.element1
+{
+ opacity: 0;
+ position: absolute;
+ bottom: -150px;
+ right: 40%;
+ width: 250px;
+ height: 250px;
+ border: 40px solid #000;
+ animation: rotate 40s linear infinite, fadeIn 1s linear forwards;
+ animation-delay: 4s;
+}
+.element2
+{
+ opacity: 0;
+ position: absolute;
+ left: -10px;
+ top: 40%;
+ width: 50px;
+ height: 50px;
+ border: 2px solid #000;
+ animation: rotate 30s linear infinite, fadeIn 1s linear forwards;
+ animation-delay: 4s;
+}
+@keyframes rotate
+{
+ 0%
+ {
+  transform: rotate(45deg);
+ }
+ 100%
+ {
+  transform: rotate(405deg);
+ }
+} 
+
