@@ -115,6 +115,8 @@ def logincheck(request):
                 if(r.password==password):
                     request.session['useremail']=username
                     return render(request,'teacher.html')
+                else:
+                    return HttpResponse("<h1>INVALID EMAIL AND PASSWORD</h1>")
     elif(role=="Student"):
         res=User.objects.all()
         for r in res:
@@ -123,6 +125,8 @@ def logincheck(request):
                     request.session['useremail']=username
                     res=TeacherDetails.objects.all()
                     return render(request,'student.html',{'res':res})
+                else:
+                    return HttpResponse("<h1>INVALID EMAIL AND PASSWORD</h1>")
 def register_student_db(request):
     firstname = request.POST['firstname']
     lastname = request.POST['lastname']
